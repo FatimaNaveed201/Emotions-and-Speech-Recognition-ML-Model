@@ -126,7 +126,7 @@ def train_model(X_train, y_train):
     final_accuracy = history.history['accuracy'][-1]
     print(f"Training completed. Final Training Accuracy: {final_accuracy * 100:.2f}%")
     
-    model.save("detect_model2.h5")  # Save model to file
+    model.save("EmotionsModel.h5")  # Save model to file
     return model
 
 # Preprocess frame for emotion prediction
@@ -289,14 +289,14 @@ def show_main_screen():
     frame_main.pack(fill="both", expand=True)
 
 # Load background images
-bg_main = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\MainPage.png"))
-bg_emotion = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\EmotionsPage.png"))
-bg_speech = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\SpeechPage.png"))
-emotion_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\EmotionButton.png") 
-speech_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\SpeechButton.png") 
-back_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\BackButton.png") 
-start_img = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\StartButton.png").resize((200, 70)))
-stop_img = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\StopButton.png").resize((200, 70)))
+bg_main = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\MainPage.png"))
+bg_emotion = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\EmotionsPage.png"))
+bg_speech = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\SpeechPage.png"))
+emotion_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\EmotionButton.png") 
+speech_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\SpeechButton.png") 
+back_img = tk.PhotoImage(file=r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\BackButton.png") 
+start_img = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\StartButton.png").resize((200, 70)))
+stop_img = ImageTk.PhotoImage(Image.open(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\GUI Images\StopButton.png").resize((200, 70)))
 
 # Main Screen with Background
 bg_label_main = tk.Label(frame_main, image=bg_main)
@@ -351,11 +351,11 @@ btn_back.place(relx=0.5, rely=0.88, anchor="center")  # Centered placement
 
 # Load pre-trained model or train new model
 try:
-    model = load_model("detect_model2.h5") # detect1,detect2, model 3, 5, 11 are good
+    model = load_model("EmotionsModel.h5") # detect1,detect2, model 3, 5, 11 are good
     print("Model loaded successfully.")
 except:
     print("Model not found. Training a new model.")
-    X, y = load_data_from_folders(r"EmotionsAndSpeechDetector\train")
+    X, y = load_data_from_folders(r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\EmotionsDataset\train")
     model = train_model(X, y)
 
 # Start threads
