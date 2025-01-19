@@ -3,16 +3,11 @@ import numpy as np
 import cv2
 import tensorflow as tf
 from tf_keras.models import load_model
-from tf_keras.preprocessing.image import img_to_array
-from tf_keras.utils import to_categorical
-from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, auc
+from sklearn.metrics import accuracy_score, confusion_matrix
 import random
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
-import tkinter as tk
-from tkinter import Scrollbar, Canvas
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tqdm import tqdm
 
 # Define emotion labels based on folder names
