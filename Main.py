@@ -133,7 +133,7 @@ def train_model(X_train, y_train):
     tensorboard_callback = TensorBoard(log_dir='./logs', histogram_freq=1)
     
     # Using TQDM in model training for progress bar
-    history = model.fit(X_train, y_train, epochs=35, batch_size=32, verbose=1, 
+    history = model.fit(X_train, y_train, epochs=85, batch_size=32, verbose=1, 
                         callbacks=[tensorboard_callback, TqdmCallback()])  # Add TQDMCallback
     
     # Display final training accuracy
