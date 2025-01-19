@@ -1,29 +1,26 @@
-import os
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-import numpy as np
-import cv2
-import tensorflow as tf
-from tf_keras.models import Sequential, load_model
-from tf_keras.callbacks import EarlyStopping
-from tf_keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-from tf_keras.utils import to_categorical
-from tf_keras.preprocessing.image import img_to_array
-from tf_keras import models
-from tf_keras.optimizers import Adam
-from tf_keras.callbacks import TensorBoard
-import matplotlib.pyplot as plt
-from collections import deque
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from tqdm.keras import TqdmCallback  # Added tqdm for progress bar
-import tkinter as tk
-from PIL import Image, ImageTk  # For GUI image display
-import threading
-import speech_recognition as sr
-from googletrans import Translator
-from collections import deque
-from sklearn.utils import resample 
+import os  # File and directory management
+import pandas as pd  # Data manipulation and analysis
+import numpy as np  # Numerical operations
+import cv2  # Image processing
+import tensorflow as tf  # Deep learning framework
+from tf_keras.models import Sequential, load_model  # Model building and loading
+from tf_keras.callbacks import EarlyStopping  # Early stopping during training
+from tf_keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout  # Layers for CNN
+from tf_keras.utils import to_categorical  # One-hot encoding for labels
+from tf_keras.preprocessing.image import img_to_array  # Image preprocessing
+from tf_keras import models  # Model handling
+from tf_keras.optimizers import Adam  # Optimization algorithm
+from tf_keras.callbacks import TensorBoard  # Logging for TensorBoard
+import matplotlib.pyplot as plt  # Plotting and visualization
+from collections import deque  # Double-ended queue for data structures
+from tqdm.keras import TqdmCallback  # Progress bar for training
+import tkinter as tk  # GUI creation
+from PIL import Image, ImageTk  # Image handling in GUI
+import threading  # Multithreading for concurrent execution
+import speech_recognition as sr  # Speech-to-text recognition
+from googletrans import Translator  # Language translation
+from collections import deque  # Double-ended queue for data structures
+from sklearn.utils import resample  # Dataset resampling and balancing
 
 # Define Emotion labels based on the folder names
 emotion_labels = ["Angry",  "Fear", "Happy", "Sad", "Surprise", "Neutral"]
@@ -96,21 +93,38 @@ def load_data_from_folders(dataset_path):
 
 # Build the CNN Model
 def build_model():
+    # Initialize the Sequential model
     model = Sequential([
+        
+        # First convolutional layer with 32 filters, 3x3 kernel size, ReLU activation function
+        # The input shape is specified as (48, 48, 1) which is a grayscale image of 48x48 pixels
         Conv2D(32, (3, 3), activation='relu', input_shape=(48, 48, 1)),
-        MaxPooling2D((2, 2)),
-        Dropout(0.25),
-        Conv2D(64, (3, 3), activation='relu'),
-        MaxPooling2D((2, 2)),
-        Dropout(0.25),
-        Flatten(),
-        Dense(128, activation='relu'),
-        Dropout(0.5),
+        
+        MaxPooling2D((2, 2)), # MaxPooling layer to reduce the spatial dimensions of the feature maps (2x2 window)
+        
+        Dropout(0.25), # Dropout layer to prevent overfitting by randomly setting 25% of the input units to 0
+        
+        Conv2D(64, (3, 3), activation='relu'), # Second convolutional layer with 64 filters and 3x3 kernel size, ReLU activation
+        
+        MaxPooling2D((2, 2)), # MaxPooling layer to reduce the spatial dimensions further (2x2 window)
+        
+        Dropout(0.25), # Dropout layer with 25% dropout rate
+        
+        Flatten(), # Flatten layer to convert the 2D matrix to a 1D vector for the fully connected layers
+        
+        Dense(128, activation='relu'), # Fully connected layer with 128 units and ReLU activation
+        
+        Dropout(0.5), # Dropout layer with 50% dropout rate to prevent overfitting
+        
+        # Output layer with 6 units (one for each emotion) and softmax activation for multi-class classification
+        # Softmax ensures the output sums to 1 and each value represents the probability of each emotion
         Dense(6, activation='softmax')  # Number of emotions
     ])
 
+    # Compile the model using Adam optimizer, categorical cross-entropy loss function, and accuracy metric
     model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
 
+    # Return the compiled model
     return model
 
 def train_model(X_train, y_train):
