@@ -22,7 +22,7 @@ emotion_map = {'angry': 0, 'fearful': 1, 'happy': 2, 'sad': 3, 'surprised': 4, '
 
 # Load the pre-trained model
 try:
-    model = load_model("detect_model2.h5")
+    model = load_model("EmotionsModel.h5")
     print("Model loaded successfully.")
 except FileNotFoundError:
     print("Model not found. Please train the model first.")
@@ -104,7 +104,7 @@ def evaluate_model(test_folder, max_images_per_class=1000):
     plt.show()
 
 # Specify the test folder path
-test_folder = r"C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\EmotionsDataset\test"
+test_folder = r"C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\EmotionsDataset\test"
 
 # Run the evaluation
 evaluate_model(test_folder, max_images_per_class=6)
