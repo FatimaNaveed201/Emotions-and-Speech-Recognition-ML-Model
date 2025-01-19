@@ -71,7 +71,7 @@ def plot_target_sizes(target_sizes):
     plt.show()
 
 # Specify the path to the dataset
-dataset_path = r'C:\Users\Fatima Naveed\Desktop\Machine Learning VSC\EmotionsAndSpeechDetector\train' 
+dataset_path = r'C:\Users\Fatima Naveed\Documents\GitHub\Emotions-and-Speech-Recognition-ML-Model\EmotionsDataset\train' 
 
 # Load the dataset
 emotion_data, emotion_counts = load_data_from_folders(dataset_path)
