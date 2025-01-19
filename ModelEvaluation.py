@@ -15,7 +15,6 @@ from tkinter import Scrollbar, Canvas
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tqdm import tqdm
 
-
 # Define emotion labels based on folder names
 emotion_labels = ["Angry", "Fearful", "Happy", "Sad", "Surprised", "Neutral"]
 emotion_map = {'angry': 0, 'fearful': 1, 'happy': 2, 'sad': 3, 'surprised': 4, 'neutral': 5}
