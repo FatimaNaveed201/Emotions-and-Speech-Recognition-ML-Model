@@ -60,7 +60,7 @@ def plot_target_sizes(target_sizes):
     plt.figure(figsize=(12, 6))
 
     # Plot target sizes
-    plt.bar(emotions, target_counts, alpha=0.6, label="Target Size", color='salmon')
+    plt.bar(emotions, target_counts, alpha=0.6, label="Target Size", color='green')
 
     plt.title("Target Emotion Distribution")
     plt.xlabel("Emotion")
